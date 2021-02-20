@@ -37,6 +37,7 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
+
                 Expanded(
                   child: ReusableCard(
                     color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
@@ -44,13 +45,14 @@ class _InputPageState extends State<InputPage> {
                       text: "MALE",
                       icon: FontAwesomeIcons.mars,
                     ),
-                    lomito: (){
+                    onPress: (){
                       selectedGender = Gender.male;
                       setState(() {
                       });
                     },
                   ),
                 ),
+
                 Expanded(
                   child: ReusableCard(
                     color: selectedGender == Gender.female ? activeCardColor: inactiveCardColor,
@@ -58,7 +60,7 @@ class _InputPageState extends State<InputPage> {
                       text: "FEMALE",
                       icon: FontAwesomeIcons.venus,
                     ),
-                    lomito: (){
+                    onPress: (){
                       selectedGender = Gender.female;
                       setState(() {
                       });

@@ -4,14 +4,14 @@ class ReusableCard extends StatelessWidget {
 
   final Color color;
   final Widget childCard;
-  final Function lomito;
+  final Function onPress;
 
-  ReusableCard({@required this.color, @required this.childCard, this.lomito});
+  ReusableCard({@required this.color, @required this.childCard, this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: lomito,
+      onTap: onPress,
       child: Container(
         margin: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
