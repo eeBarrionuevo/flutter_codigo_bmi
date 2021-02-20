@@ -25,43 +25,19 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
-                    childCard: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.mars,
-                          size: 70.0,
-                        ),
-                        SizedBox(
-                          height: 7.0,
-                        ),
-                        Text(
-                          "MALE",
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                      ],
+                    childCard: IconContent(
+                      text: "MALE",
+                      icon: FontAwesomeIcons.mars,
                     ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: activeCardColor,
-                    childCard: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.venus,
-                          size: 70.0,
-                        ),
-                        SizedBox(
-                          height: 7.0,
-                        ),
-                        Text(
-                          "FEMALE",
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                      ],
-                    ),
+                    childCard: IconContent(
+                      text: "FEMALE",
+                      icon: FontAwesomeIcons.venus,
+                    )
                   ),
                 ),
               ],
@@ -105,6 +81,36 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
+class IconContent extends StatelessWidget {
+
+  final String text;
+  final IconData icon;
+
+  IconContent({@required this.text, @required this.icon });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          this.icon,
+          size: 70.0,
+        ),
+        SizedBox(
+          height: 7.0,
+        ),
+        Text(
+          this.text,
+          style: TextStyle(fontSize: 18.0),
+        ),
+      ],
+    );
+  }
+}
+
+
 
 class ReusableCard extends StatelessWidget {
 
