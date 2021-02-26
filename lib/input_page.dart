@@ -1,20 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_bmi/constants.dart';
 import 'package:flutter_codigo_bmi/icon_content.dart';
 import 'package:flutter_codigo_bmi/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-const activeCardColor = Color(0xff1B2440);
-const inactiveCardColor = Color(0xFF1A1B2B);
-const bottomContainerColor = Colors.greenAccent;
-const bottomContainerHeight = 80.0;
-
-enum Gender{
-  male,
-  female,
-  other
-}
-
+enum Gender { male, female, other }
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,8 +14,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-
   Gender selectedGender;
+  int height = 160;
 
   @override
   Widget build(BuildContext context) {
@@ -37,33 +28,33 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
+                    color: selectedGender == Gender.male
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     childCard: IconContent(
                       text: "MALE",
                       icon: FontAwesomeIcons.mars,
                     ),
-                    onPress: (){
+                    onPress: () {
                       selectedGender = Gender.male;
-                      setState(() {
-                      });
+                      setState(() {});
                     },
                   ),
                 ),
-
                 Expanded(
                   child: ReusableCard(
-                    color: selectedGender == Gender.female ? activeCardColor: inactiveCardColor,
+                    color: selectedGender == Gender.female
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     childCard: IconContent(
                       text: "FEMALE",
                       icon: FontAwesomeIcons.venus,
                     ),
-                    onPress: (){
+                    onPress: () {
                       selectedGender = Gender.female;
-                      setState(() {
-                      });
+                      setState(() {});
                     },
                   ),
                 ),
@@ -75,7 +66,35 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "HEIGHT",
+                          style: kLabelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: [
+                            Text(height.toString(), style: kNumberTextStyle,),
+                            Text("cm", style: kLabelTextStyle ,)
+                          ],
+                        ),
+                        Slider(
+                          value: height.toDouble(),
+                          min: 10,
+                          max: 200,
+                          onChanged: (double value){
+                            height = value.round();
+                            setState(() {
+
+                            });
+                          }
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -86,20 +105,20 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
-            height: bottomContainerHeight,
+            color: kBottomContainerColor,
+            height: kBottomContainerHeight,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
           )
@@ -108,8 +127,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-
-
-
-
