@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_bmi/constants.dart';
 import 'package:flutter_codigo_bmi/icon_content.dart';
+import 'package:flutter_codigo_bmi/result_page.dart';
 import 'package:flutter_codigo_bmi/reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,6 +16,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 160;
+  int age = 25;
+  int weight = 53;
 
   @override
   Widget build(BuildContext context) {
@@ -121,14 +124,31 @@ class _InputPageState extends State<InputPage> {
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           children: [
                             Text(
-                              "20",
+                              age.toString(),
                               style: kNumberTextStyle,
                             )
                           ],
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            RoundIconButton(),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                age++;
+                                setState(() {});
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                age--;
+                                setState(() {});
+                              },
+                            ),
                           ],
                         ),
                       ],
@@ -138,16 +158,68 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "WEIGHT",
+                          style: kLabelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: [
+                            Text(
+                              weight.toString(),
+                              style: kNumberTextStyle,
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                weight++;
+                                setState(() {});
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                weight--;
+                                setState(() {});
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            height: kBottomContainerHeight,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
+            },
+            child: Container(
+              color: kBottomContainerColor,
+              height: kBottomContainerHeight,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  "CALCULATE",
+                  style: kLargeButtonTextStyle,
+                ),
+              ),
+            ),
           )
         ],
       ),
@@ -156,19 +228,19 @@ class _InputPageState extends State<InputPage> {
 }
 
 class RoundIconButton extends StatelessWidget {
+  IconData icon;
+  Function onPress;
+
+  RoundIconButton({@required this.icon, @required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: () {
-      },
-      child: Icon(Icons.add),
+      onPressed: onPress,
+      child: Icon(icon),
       fillColor: Colors.white38,
       shape: CircleBorder(),
-      constraints: BoxConstraints.tightFor(
-        height: 50.0,
-        width: 50.0
-      ),
+      constraints: BoxConstraints.tightFor(height: 50.0, width: 50.0),
     );
   }
 }

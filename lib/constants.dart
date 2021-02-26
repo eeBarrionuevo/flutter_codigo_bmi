@@ -15,3 +15,9 @@ const kNumberTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.bold,
 );
+
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 30.0,
+  fontWeight: FontWeight.bold,
+  color: kInactiveCardColor
+);
