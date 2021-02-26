@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_bmi/bottom_button.dart';
 import 'package:flutter_codigo_bmi/constants.dart';
 import 'package:flutter_codigo_bmi/reusable_card.dart';
 
@@ -16,7 +17,7 @@ class ResultPage extends StatelessWidget {
             flex: 1,
             child: Text(
               "Your result",
-              style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+              style: kResultTitleTextStyle,
             ),
           ),
           Expanded(
@@ -28,25 +29,26 @@ class ResultPage extends StatelessWidget {
                 children: [
                   Text(
                     "Normal",
-                    style: TextStyle(
-                        color: Colors.greenAccent,
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.bold),
+                    style: kResultTextStyle,
                   ),
                   Text(
                     "25",
-                    style:
-                        TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold),
+                    style: kResultNumberTextStyle,
                   ),
                   Text(
-                    "Mensaje de aliento",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                    ),
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    style: kBMITextStyle,
+                    textAlign: TextAlign.center,
                   )
                 ],
               ),
             ),
+          ),
+          BottomButton(
+            text: "RE-CALCULATE",
+            onTap: (){
+              Navigator.pop(context);
+            },
           ),
         ],
       ),

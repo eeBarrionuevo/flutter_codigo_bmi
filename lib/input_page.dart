@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_bmi/bottom_button.dart';
 import 'package:flutter_codigo_bmi/constants.dart';
 import 'package:flutter_codigo_bmi/icon_content.dart';
 import 'package:flutter_codigo_bmi/result_page.dart';
 import 'package:flutter_codigo_bmi/reusable_card.dart';
+import 'package:flutter_codigo_bmi/round_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum Gender { male, female, other }
@@ -204,43 +206,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
+            text: "CALCULATE",
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultPage()));
             },
-            child: Container(
-              color: kBottomContainerColor,
-              height: kBottomContainerHeight,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  "CALCULATE",
-                  style: kLargeButtonTextStyle,
-                ),
-              ),
-            ),
           )
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  IconData icon;
-  Function onPress;
-
-  RoundIconButton({@required this.icon, @required this.onPress});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPress,
-      child: Icon(icon),
-      fillColor: Colors.white38,
-      shape: CircleBorder(),
-      constraints: BoxConstraints.tightFor(height: 50.0, width: 50.0),
     );
   }
 }
