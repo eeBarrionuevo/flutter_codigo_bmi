@@ -13,7 +13,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
   Gender selectedGender;
   int height = 160;
 
@@ -78,8 +77,14 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           children: [
-                            Text(height.toString(), style: kNumberTextStyle,),
-                            Text("cm", style: kLabelTextStyle ,)
+                            Text(
+                              height.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                            Text(
+                              "cm",
+                              style: kLabelTextStyle,
+                            )
                           ],
                         ),
                         Slider(
@@ -87,12 +92,10 @@ class _InputPageState extends State<InputPage> {
                             min: 100,
                             max: 200,
                             inactiveColor: Colors.white54,
-                            onChanged: (double value){
+                            onChanged: (double value) {
                               height = value.round();
-                              setState(() {
-                              });
-                            }
-                        ),
+                              setState(() {});
+                            }),
                       ],
                     ),
                   ),
@@ -106,6 +109,30 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "AGE",
+                          style: kLabelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          children: [
+                            Text(
+                              "20",
+                              style: kNumberTextStyle,
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            RoundIconButton(),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
@@ -123,6 +150,24 @@ class _InputPageState extends State<InputPage> {
             width: double.infinity,
           )
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: () {
+      },
+      child: Icon(Icons.add),
+      fillColor: Colors.white38,
+      shape: CircleBorder(),
+      constraints: BoxConstraints.tightFor(
+        height: 50.0,
+        width: 50.0
       ),
     );
   }
