@@ -12,9 +12,9 @@ class CalculatorBrain{
   CalculatorBrain({this.height, this.weight});
 
 
-  double calculateBMI(){
+  String calculateBMI(){
     bmi = weight / pow(height / 100, 2);
-    return bmi;
+    return bmi.toStringAsFixed(1);
   }
 
   String getResult(){
@@ -28,7 +28,7 @@ class CalculatorBrain{
   }
 
   String getInterpretation(){
-    if(bmi >= 25){
+    if(bmi >= 25.0){
       return "Try to exercise more.";
     }else if(bmi > 18.5){
       return "You have a normal body, good job!";

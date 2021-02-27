@@ -4,6 +4,16 @@ import 'package:flutter_codigo_bmi/constants.dart';
 import 'package:flutter_codigo_bmi/reusable_card.dart';
 
 class ResultPage extends StatelessWidget {
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
+  ResultPage({this.bmiResult, this.resultText, this.interpretation});
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +38,15 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "Normal",
+                    resultText,
                     style: kResultTextStyle,
                   ),
                   Text(
-                    "25",
+                    bmiResult,
                     style: kResultNumberTextStyle,
                   ),
                   Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    interpretation,
                     style: kBMITextStyle,
                     textAlign: TextAlign.center,
                   )

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_codigo_bmi/bottom_button.dart';
+import 'package:flutter_codigo_bmi/calculator_brain.dart';
 import 'package:flutter_codigo_bmi/constants.dart';
 import 'package:flutter_codigo_bmi/icon_content.dart';
 import 'package:flutter_codigo_bmi/result_page.dart';
@@ -208,8 +209,20 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButton(
             text: "CALCULATE",
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultPage()));
+            onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bmiResult: calc.calculateBMI(),
+                    interpretation: calc.getInterpretation(),
+                    resultText: calc.getResult(),
+                  ),
+                ),
+              );
             },
           ),
         ],
